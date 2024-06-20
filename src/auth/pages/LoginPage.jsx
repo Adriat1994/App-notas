@@ -1,4 +1,4 @@
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink, useNavigate } from "react-router-dom"
 import { Google } from "@mui/icons-material"
 import { Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { AuthLayout } from "../layout/AuthLayout"
@@ -6,6 +6,15 @@ import { AuthLayout } from "../layout/AuthLayout"
 
 
 export const LoginPage = () => {
+
+  const navigate = useNavigate();
+
+  const goToMain = () => {
+    navigate('/')
+  }
+
+
+
   return (
    
     <AuthLayout title="Login">
@@ -32,7 +41,7 @@ export const LoginPage = () => {
 
               <Grid container spacing={2} sx={{mb:2, mt:1}}>
                 <Grid item xs={12} sm={6}>
-                  <Button variant="contained" fullWidth>
+                  <Button variant="contained" fullWidth onClick={goToMain}>
                     Login
                   </Button>
                 </Grid>
