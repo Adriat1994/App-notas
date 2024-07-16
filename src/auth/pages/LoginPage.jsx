@@ -3,34 +3,34 @@ import { Google } from "@mui/icons-material"
 import { Alert, Button, Grid, Link, TextField, Typography } from "@mui/material"
 import { AuthLayout } from "../layout/AuthLayout"
 import { useForm } from "../../hooks"
-import { checkingAuthentication, startGoogleSignIn, startLoginWithEmailPassword } from "../../store/auth/thunks"
-import { useEffect, useMemo } from "react"
+import { startGoogleSignIn, startLoginWithEmailPassword } from "../../store/auth/thunks"
+import { useMemo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-
+const formData = {
+  email: '',
+  password: ''
+}
 
 export const LoginPage = () => {
 
   const {status, errorMessage} = useSelector( state => state.auth );
 
   const dispatch = useDispatch();  
-  const { email, password, onInputChange } = useForm({
-    email: '',
-    password: ''
-  });
+  const { email, password, onInputChange } = useForm(formData);
   
   const isAuthenticating = useMemo( () => status === 'checking', [status] );
 
   const onSubmit = (event) => {
     event.preventDefault();
 
-    console.log({email, password});
+    //console.log({email, password});
 
     dispatch(startLoginWithEmailPassword({email, password}));
   }
 
   const onGoogleSignIn = () => {
-    console.log('login google');
+    //console.log('login google');
     dispatch(startGoogleSignIn());
   }
 
